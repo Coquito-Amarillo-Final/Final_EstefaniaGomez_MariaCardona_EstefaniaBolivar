@@ -32,9 +32,27 @@ class Cliente(Resource):
         return{"error": f"Cliente con id '{id_cliente}' no encontrado"}, 404
 
     def post(self):
-        nuevo = {"id": len(clientes)+1, "nombre": f"Cliente{len(clientes)+1}"}
-        clientes.append(nuevo)
-        return nuevo, 201
+        datos = request.get_json()
+
+        campos_requeridos = ["nombre", "correo", "contrasena_hash", "numero_telefono"]
+
+        for campo in campos_requeridos:
+            if campo not in datos:
+                return {"error": f"Campo requerido: '{campo}'"}, 400
+
+
+        nuevo_cliente = ClienteModel(
+            id_cliente = len(clientes) + 1,
+            nombre = datos["nombre"],
+            correo = datos["correo"],
+            contrasena_hash = datos["contrasena_hash"],
+            numero_telefono = datos["numero_telefono"],
+            fecha_registro = datetime.now() 
+
+        )
+
+        clientes.append(nuevo_cliente)
+        return nuevo_cliente.to_dict(), 201
 
 
 
