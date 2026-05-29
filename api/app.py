@@ -114,9 +114,50 @@ class Pedido(Resource):
         return{"error": f"Pedido con id '{id_pedido}' no encontrado"}, 404
 
     def post(self):
-        nuevo = {"id": len(pedidos)+1, "detalle": f"Pedido{len(pedidos)+1}"}
-        pedidos.append(nuevo)
-        return nuevo, 201
+        datos = request.get_json()
+    
+        campos_requeridos = ["id_cliente", "items", "total", "direccion_entrega"]
+
+        for campo in campos_requeridos:
+            if campo not in datos:
+                return {"error": f"Campo requerido: '{campo}'"}, 400
+        
+
+        cliente_pedido = None
+
+        for cliente in clientes:
+            if cliente.id_cliente == datos["id_cliente"]:
+                cliente_pedido = cliente
+                break
+        
+        if cliente_pedido is None:
+            return {"error": "Cliente no encontrado"}, 404
+        
+        
+
+        for item in datos["items"]:
+           pedido__existente = False
+
+           for producto in productos:
+               
+               if producto.id_producto == item["id_producto"]:
+                   
+                   pedido__existente = True
+                   break
+               
+           if not pedido__existente:
+            return {"error": f"Producto con id '{item['id_producto']}' no encontrado" }, 404
+
+        nuevo_pedido = PedidoModel(
+            id_pedido = len(pedidos) + 1,
+            cliente = cliente_pedido,
+            items = datos["items"],
+            total = datos["total"],
+            direccion_entrega = datos["direccion_entrega"]
+        )
+
+        pedidos.append(nuevo_pedido)
+        return nuevo_pedido.to_dict(), 201
 
 
 
