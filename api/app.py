@@ -53,6 +53,26 @@ class Cliente(Resource):
 
         clientes.append(nuevo_cliente)
         return nuevo_cliente.to_dict(), 201
+    
+     def put(self, id_cliente = None):
+
+        if id_cliente is None:
+             return {"error": "Se requiere el ID del cliente para realizar cambios"}, 400
+
+        datos = request.get_json()
+
+        for cliente in clientes:
+
+            if cliente.id_cliente == id_cliente:
+
+                if "nombre" in datos: cliente.nombre = datos["nombre"]
+                if "correo" in datos: cliente.correo = datos["correo"]
+                if "numero_telefono" in datos: cliente.numero_telefono = datos["numero_telefono"]
+                
+
+                return cliente.to_dict(), 200
+            
+        return {"error": f"cliente con id '{id_cliente}' no encontrado"}, 404
 
 
 
