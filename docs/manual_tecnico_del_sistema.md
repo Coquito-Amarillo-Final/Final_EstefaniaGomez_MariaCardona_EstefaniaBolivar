@@ -8,27 +8,31 @@ El proyecto consiste en una API REST creada para ayudar a la empresa a organizar
 
 Para que el sistema funcione correctamente, es necesario mencionar con algunas herramientas básicas de desarrollo.
 
-### Lenguaje de programación 
+* Python 3.x.
+* Postman.
+* Dependencias del proyecto (`flask` y `flask-restful`).
+
+## Tecnologias utilizadas
+
+Para la construcción de la API se utilizaron las siguientes tecnologias:
+
+* ### Lenguaje de programación 
 
 El proyecto fue desarrollado en Python, ya que es un lenguaje fácil de utilizar y muy utilizado en el desarrollo de aplicaciones backend.
 
-## Herramientas utilizadas
-
-Para la construcción de la API se utilizaron las siguientes herramientas:
-
-### Flask
+* ### Flask
 
 framework utilizado para crear la aplicación.
 
-### Flask-RESTful
+* ### Flask-RESTful
 
 librería que facilita la creación de endpoints y servicios REST.
 
-### Entorno de desarrollo
+* ### Entorno de desarrollo
 
 El sistema puede ejecutarse tanto en Visual Studio Code como en GitHub Codespaces, permitiendo trabajar de forma local o en la nube.
 
-### Herramientas de prueba
+* ### Herramientas de prueba
 
 Para probar el funcionamiento de la API se recomienda usar Postman, ya que permite enviar solicitudes HTTP y verificar las respuestas del sistema en formato JSON.
 
@@ -36,62 +40,78 @@ Para probar el funcionamiento de la API se recomienda usar Postman, ya que permi
 
 Para ejecutar correctamente el proyecto se deben realizar los siguientes pasos:
 
-### Descargar el proyecto
+### 1. Descargar el proyecto
 
-Primero se debe clonar el repositorio desde GitHub utilizando el siguiente comando: git clone URL_DEL_REPOSITORIO
+Primero se debe clonar el repositorio desde GitHub utilizando el siguiente comando: 
 
-### Ingresar a la carpeta del proyecto
+```bash
+git clone https://github.com/Coquito-Amarillo-Final/Final_EstefaniaGomez_MariaCardona_EstefaniaBolivar.git
+```
 
-Luego se debe entrar a la carpeta principal del proyecto: cd API_cs-main
+### 2. Ingresar a la carpeta del proyecto
 
-### Instalar dependencias
+Luego se debe entrar a la carpeta principal del proyecto: 
 
-Después se instalan las librerías necesarias con el comando: pip install flask flask-restful
+```bash
+cd api
+```
 
-### Ejecutar la API
+### 3. Instalar dependencias
 
-Ejecutar el archivo principal del proyecto para iniciar el servidor.
+Después se instalan las librerías necesarias con el comando: 
+
+```bash
+pip install flask flask-restful
+```
+
+### 5. Ejecutar la API
+
+Ejecutar el archivo principal del proyecto para iniciar el servidor:
+
+```bash
+python app.py
+```
 
 ## Arquitectura de endpoints (rutas de la API)
 
 La API se encuentra organizada en tres módulos principales:
 
-### Módulo de clientes
+* ### Módulo de clientes
 
 Permite registrar, consultar, actualizar y eliminar clientes dentro del sistema.
 
-### Módulo de productos
+* ### Módulo de productos
 
 Permite administrar los productos artesanales, incluyendo información como precio, descripción y stock disponible.
 
-### Módulo de pedidos
+* ### Módulo de pedidos
 
 Permite registrar pedidos asociados a clientes y productos, además de consultar y actualizar el estado de los pedidos.
 
 ## Los módulos funcionan mediante los métodos HTTP:
 
-GET
+* GET
 
-POST
+* POST
 
-PUT
+* PUT
 
-DELETE
+* DELETE
 
 ## Protocolo de comunicación y seguridad
 
-### Formato de datos
+### 1. Formato de datos
 
 Toda la información enviada y recibida por la API utiliza formato JSON, lo que facilita la comunicación entre el cliente y el servidor.
 
-### Códigos de estado HTTP
+### 2. Códigos de estado HTTP
 
 La API utiliza códigos HTTP para indicar el resultado de cada solicitud:
 
-200: solicitud realizada correctamente.
-
-201: recurso creado exitosamente.
-
-400: error en la solicitud o datos incompletos.
-
-404: recurso no encontrado.
+| Código | Significado | 
+|--------|-------------|
+| `200` | Solicitud realizada correctamente. |
+| `201` | Recurso creado exitosamente. | 
+| `400` | Error en la solicitud o datos incompletos. | 
+| `404` | Recurso no encontrado. | 
+| `500` | Error en el servidor | 
