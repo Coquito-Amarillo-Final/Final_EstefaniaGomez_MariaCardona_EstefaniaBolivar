@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_restful import Api, Resource
+from datetime import datetime
+from models import ClienteModel, ProductoModel, PedidoModel
 
 app = Flask(__name__)
 api = Api(app)
