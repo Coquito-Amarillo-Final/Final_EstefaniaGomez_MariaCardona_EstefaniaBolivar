@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Api, Resource
 from datetime import datetime
 from models import ClienteModel, ProductoModel, PedidoModel
