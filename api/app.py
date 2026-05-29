@@ -103,9 +103,28 @@ class Producto(Resource):
         return{"error": f"Producto con id '{id_producto}' no encontrado"}, 404
         
     def post(self):
-        nuevo = {"id": len(productos)+1, "nombre": f"Producto{len(productos)+1}"}
-        productos.append(nuevo)
-        return nuevo, 201
+        datos = request.get_json()
+
+        campos_requeridos = ["nombre", "precio", "stock", "descripcion", "categoria", "precio_envio"]
+
+        for campo in campos_requeridos:
+            if campo not in datos:
+                return {"error": f"Campo requerido: '{campo}'"}, 400
+
+
+        nuevo_producto = ProductoModel(
+            id_producto = len(productos) + 1,
+            nombre = datos["nombre"],
+            precio = datos["precio"],
+            stock = datos["stock"],
+            descripcion = datos["descripcion"],
+            categoria = datos["categoria"],
+            precio_envio =datos["precio_envio"] 
+
+        )
+
+        productos.append(nuevo_producto)
+        return nuevo_producto.to_dict(), 201
 
 
 
