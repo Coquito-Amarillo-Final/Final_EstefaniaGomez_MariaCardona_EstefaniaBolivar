@@ -5,7 +5,7 @@ La arquitectura implementada en el proyecto es una arquitectura cliente-servidor
 ---
 ## Organización de archivos del sistema
 
-### 1. [app.py](api/apy.py)
+### 1. [app.py](api/app.py)
 
 Este componente actúa como el controlador central. Utiliza el micro-framework Flask para gestionar las rutas de acceso, endpoints, recibir las solicitudes del cliente y procesar las operaciones de creación, consulta, actualización y eliminación de datos. Además, es el encargado de validar que la información recibida sea correcta antes de generar una respuesta oficial.
 
