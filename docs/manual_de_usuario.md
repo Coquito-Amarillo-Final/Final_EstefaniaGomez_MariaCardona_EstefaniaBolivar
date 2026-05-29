@@ -3,10 +3,36 @@
 ## 1. Introducción.
 Este manual tiene como propósito describir cómo consumir de manera local la API REST desarrollada para Coquito Amarillo S.A.S. usando postman. La API permite crear, consultar, modificar y eliminar los datos de los clientes, productos y pedidos de la empresa.
 Es **importante** recordar que los datos no se almacenan en una base de datos de información, por lo tanto al finalizar la ejecución del archivo los datos almacenados durante la prueba serán eliminados.
+
 **La URL base es:** `http://localhost:5000`
+---
+## 2. Requisitos previos.
+
+Antes hacer uso de la API de manera local es necesario tener instalado:
+
+* Python 3.x.
+* Postman.
+* Dependencias del proyecto (`flask` y `flask-restful`).
 
 ---
-## 2. Configuración de Postman.
+## 3. Cómo ejecutar la API.
+
+1. Abrir una terminal en la carpeta de la API.
+2. Instalar dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+## 4. Ejecutar el servidor
+
+```bash
+python app.py
+```
+
+---
+## 5. Configuración de Postman.
 1. Abrir postman y crear una nueva solicitud con **New > HTTP Request**.
 2. Seleccionar el método HTTP deseado (GET, POST, PUT, DELETE) en el menú desplegable.
 3. Ingresar la URL del endpoint en el campo de dirección.
@@ -14,8 +40,8 @@ Es **importante** recordar que los datos no se almacenan en una base de datos de
 5. Hacer click en el botón **Send** para envíar la solicitud.
 
 ---
-## 3. Gestión de clientes.
-### 3.1 Agregar un cliente nuevo - `POST /clientes`.
+## 6. Gestión de clientes.
+### 6.1 Agregar un cliente nuevo - `POST /clientes`.
 Los clientes a ingresar deben tener los siguientes datos:
 | Campo | Tipo | Requerido | Ejemplo |
 |-------|------|-----------|---------|
@@ -40,11 +66,11 @@ En formato JSON :
 
 **Respuesta fallida:** `400 BAD REQUEST` "error": "Campo requerido: '{campo}'".
 
-### 3.2 Consultar todos los clientes - `GET /clientes`
+### 6.2 Consultar todos los clientes - `GET /clientes`
 No requiere body.
 
 **Respuesta exitosa:** `200 OK` con la lista de todos los clientes.
-### 3.3 Consultar a un cliente en específico - `GET /clientes/{id}`
+### 6.3 Consultar a un cliente en específico - `GET /clientes/{id}`
 Reemplazar `{id}` por el `id_cliente`.
 
 **Ejemplo:** `GET /clientes/1`.
@@ -52,7 +78,7 @@ Reemplazar `{id}` por el `id_cliente`.
 **Respuesta exitosa:** `200 OK` con los datos del cliente solicitado.
 
 **Respuesta fallida:** `404 NOT FOUND` "error": "Cliente con id '{id}' no encontrado".
-### 3.4  Modificar datos de un cliente - `PUT /clientes/{id}`
+### 6.4  Modificar datos de un cliente - `PUT /clientes/{id}`
 Se debe reemplazar `{id}` por el `id_cliente`.
 Se deben enviar solo los cambios que se desean cambiar, los datos que permiten ser modificados son:
 
@@ -68,7 +94,7 @@ Se deben enviar solo los cambios que se desean cambiar, los datos que permiten s
 * `404 NOT FOUND` "error": "Se requiere el ID del cliente para realizar cambios".
 * `404 NOT FOUND` "error": "cliente con id {id} no encontrado".
 
-### 3.5 Eliminar cliente - `DELETE /clientes/{id}`
+### 6.5 Eliminar cliente - `DELETE /clientes/{id}`
 Se debe reemplazar `{id}` por el `id_cliente`.
 
 No requiere body.
@@ -79,8 +105,8 @@ No requiere body.
 * `404 NOT FOUND` "error": "Se requiere el ID del cliente para eliminar"
 * `404 NOT FOUND` "error": "cliente con id {id} no encontrado".
 ---
-## 4. Gestión de productos.
-### 4.1 Agregar un producto nuevo - `POST /clientes`.
+## 7. Gestión de productos.
+### 7.1 Agregar un producto nuevo - `POST /clientes`.
 Los productos creados deben tener los siguientes datos:
 | Campo | Tipo | Requerido | Ejemplo |
 |-------|------|-----------|---------|
@@ -109,11 +135,11 @@ En  formato JSON:
 **Respuesta exitosa:** `201 CREATED` con los datos del producto, incluyendo el `id_producto`.
 
 **Respuesta fallida:** `400 BAD REQUEST` "error": "Campo requerido: '{campo}'".
-### 4.2 Consultar todos los productos - `GET /productos`
+### 7.2 Consultar todos los productos - `GET /productos`
 No requiere body.
 
 **Respuesta exitosa:** `200 OK` con la lista de todos los productos.
-### 4.3 Consultar un producto en específico - `GET /productos/{id}`
+### 7.3 Consultar un producto en específico - `GET /productos/{id}`
 Reemplazar `{id}` por el `id_producto`.
 
 **Ejemplo:** `GET /productos/1`.
@@ -121,7 +147,7 @@ Reemplazar `{id}` por el `id_producto`.
 **Respuesta exitosa:** `200 OK` con los datos del producto solicitado.
 
 **Respuesta fallida:** `404 NOT FOUND` "error": "Producto con id '{id}' no encontrado".
-### 4.4  Modificar datos de un producto - `PUT /productos/{id}`
+### 7.4  Modificar datos de un producto - `PUT /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
 
 El único dato que no puede ser modificado es el `id_producto`
@@ -131,7 +157,7 @@ El único dato que no puede ser modificado es el `id_producto`
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del producto para realizar cambios".
 * `404 NOT FOUND` "error": "producto con id {id} no encontrado".
-### 4.5 Eliminar producto - `DELETE /productos/{id}`
+### 7.5 Eliminar producto - `DELETE /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
 
 No requiere body.
@@ -142,8 +168,8 @@ No requiere body.
 * `404 NOT FOUND` "error": "Se requiere el ID del producto para eliminar".
 * `404 NOT FOUND` "error": "producto con id {id} no encontrado".
 ---
-## 5. Gestión de pedidos.
-### 5.1 Agregar un pedido nuevo - `POST /pedidos`.
+## 8. Gestión de pedidos.
+### 8.1 Agregar un pedido nuevo - `POST /pedidos`.
 Hay que tener en cuenta que tanto el cliente y productos asociados deben de existir.
 
 Los productos creados deben tener los siguientes datos:
@@ -174,11 +200,11 @@ En  formato JSON:
 * `400 BAD REQUEST` "error": "Campo requerido: '{campo}'".
 * `404 NOT FOUND` "error": "Cliente no encontrado".
 *  `404 NOT FOUND` "error": "Producto con id '{id}' no encontrado".
-### 5.2 Consultar todos los pedidos - `GET /pedidos`
+### 8.2 Consultar todos los pedidos - `GET /pedidos`
 No requiere body.
 
 **Respuesta exitosa:** `200 OK` con la lista de todos los pedidos.
-### 5.3 Consultar un pedido en específico - `GET /pedidos/{id}`
+### 8.3 Consultar un pedido en específico - `GET /pedidos/{id}`
 Reemplazar `{id}` por el `id_pedido`.
 
 **Ejemplo:** `GET /pedidos/1`.
@@ -186,7 +212,7 @@ Reemplazar `{id}` por el `id_pedido`.
 **Respuesta exitosa:** `200 OK` con los datos del producto solicitado.
 
 **Respuesta fallida:** `404 NOT FOUND` "error": "Pedido con id '{id}' no encontrado".
-### 5.4  Modificar datos de un pedido - `PUT /productos/{id}`
+### 8.4  Modificar datos de un pedido - `PUT /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
 
 Los datos que pueden ser modificados son:
@@ -216,7 +242,7 @@ Solo hay cinco estados validos:
 * `404 NOT FOUND` "error": "Se requiere el ID del pedido para realizar cambios".
 * `404 NOT FOUND` "error": "pedido con id {id} no encontrado".
 * `400 BAD REQUEST` "error": "Estado inválido. Opciones: ['pendiente', 'pagado', 'en_preparacion', 'enviado', 'entregado', 'cancelado']"
-### 5.5 Eliminar pedido - `DELETE /pedidos/{id}`
+### 8.5 Eliminar pedido - `DELETE /pedidos/{id}`
 Se debe reemplazar `{id}` por el `id_pedido`.
 
 No requiere body.
@@ -227,7 +253,7 @@ No requiere body.
 * `404 NOT FOUND` "error": ""error": "Se requiere el ID del pedido para eliminar"".
 * `404 NOT FOUND` "error": "pedido con id {id} no encontrado".
 ---
-## 6. Códigos de respuesta HTTP
+## 9. Códigos de respuesta HTTP
 | Código | Significado | Qué hacer |
 |--------|-------------|-----------|
 | `200 OK` | Operación exitosa | Verificar los datos en la respuesta |
@@ -235,3 +261,15 @@ No requiere body.
 | `400 Bad Request` | Datos incorrectos o faltantes | Revisar que todos los campos requeridos estén presentes |
 | `404 Not Found` | El recurso no existe | Verificar que el id sea correcto |
 | `500 Internal Server Error` | Error en el servidor | Revisar que el servidor esté corriendo |
+
+---
+## 10. Orden recomendado para las pruebas.
+
+1. Crear clientes.
+2. Crear productos.
+3. Crear pedidos utilizando los ids de los clientes y productos existentes.
+4. Consultar registros.
+5. Actualizar registros.
+6. Eliminar registros.
+
+Recordar que lo pedidos dependen de los clientes y productos ya existentes.
