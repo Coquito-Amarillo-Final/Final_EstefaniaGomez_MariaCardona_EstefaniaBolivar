@@ -12,19 +12,31 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld, "/")
 
+#Datos
 clientes = []
 productos = []
 pedidos = []
 
+
 class Cliente(Resource):
-    def get(self):
-        return {"clientes": clientes}
+
+    def get(self, id_cliente = None):
+        
+        if id_cliente is None:
+            return {"clientes": [cliente.to_dict() for cliente in clientes]}
+
+        for cliente in clientes:
+            if cliente.id_cliente == id_cliente:
+                return cliente.to_dict(), 200
+        
+        return{"error": f"Cliente con id '{id_cliente}' no encontrado"}, 404
+
     def post(self):
         nuevo = {"id": len(clientes)+1, "nombre": f"Cliente{len(clientes)+1}"}
         clientes.append(nuevo)
         return nuevo, 201
 
-api.add_resource(Cliente, "/clientes")
+
 
 class Producto(Resource):
     def get(self):
@@ -34,7 +46,7 @@ class Producto(Resource):
         productos.append(nuevo)
         return nuevo, 201
 
-api.add_resource(Producto, "/productos")
+
 
 class Pedido(Resource):
     def get(self):
@@ -44,8 +56,13 @@ class Pedido(Resource):
         pedidos.append(nuevo)
         return nuevo, 201
 
-api.add_resource(Pedido, "/pedidos")
 
+
+
+#Rutas
+api.add_resource(Cliente, "/clientes", "/clientes/<int:id_cliente>")
+api.add_resource(Producto, "/productos")
+api.add_resource(Pedido, "/pedidos")
 
 
 if __name__ == "__main__":
