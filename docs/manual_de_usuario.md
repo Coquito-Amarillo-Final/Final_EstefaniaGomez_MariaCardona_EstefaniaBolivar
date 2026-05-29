@@ -4,6 +4,7 @@
 Este manual tiene como propósito describir cómo consumir de manera local la API REST desarrollada para Coquito Amarillo S.A.S. usando postman. La API permite crear, consultar, modificar y eliminar los datos de los clientes, productos y pedidos de la empresa.
 Es **importante** recordar que los datos no se almacenan en una base de datos de información, por lo tanto al finalizar la ejecución del archivo los datos almacenados durante la prueba serán eliminados.
 **La URL base es:** `http://localhost:5000`
+
 ---
 ## 2. Configuración de Postman.
 1. Abrir postman y crear una nueva solicitud con **New > HTTP Request**.
