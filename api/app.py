@@ -54,7 +54,7 @@ class Cliente(Resource):
         clientes.append(nuevo_cliente)
         return nuevo_cliente.to_dict(), 201
     
-     def put(self, id_cliente = None):
+    def put(self, id_cliente = None):
 
         if id_cliente is None:
              return {"error": "Se requiere el ID del cliente para realizar cambios"}, 400
@@ -72,6 +72,20 @@ class Cliente(Resource):
 
                 return cliente.to_dict(), 200
             
+        return {"error": f"cliente con id '{id_cliente}' no encontrado"}, 404
+    
+     def delete(self, id_cliente = None):
+
+        if id_cliente is None:
+             return {"error": "Se requiere el ID del cliente para eliminar"}, 400
+
+        for cliente in clientes:
+
+            if cliente.id_cliente == id_cliente:
+
+                clientes.remove(cliente)
+                return {"mensaje": f"El cliente con el id '{id_cliente}' fue eliminado exitosamente"}, 200
+
         return {"error": f"cliente con id '{id_cliente}' no encontrado"}, 404
 
 
