@@ -5,6 +5,7 @@ Este manual tiene como propósito describir cómo consumir de manera local la AP
 Es **importante** recordar que los datos no se almacenan en una base de datos de información, por lo tanto al finalizar la ejecución del archivo los datos almacenados durante la prueba serán eliminados.
 
 **La URL base es:** `http://localhost:5000`
+
 ---
 ## 2. Requisitos previos.
 
