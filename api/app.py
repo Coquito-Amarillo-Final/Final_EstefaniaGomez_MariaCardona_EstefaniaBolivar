@@ -89,10 +89,19 @@ class Cliente(Resource):
         return {"error": f"cliente con id '{id_cliente}' no encontrado"}, 404
 
 
-
+#Productos
 class Producto(Resource):
-    def get(self):
-        return {"productos": productos}
+    def get(self, id_producto = None):
+
+        if id_producto is None:
+            return {"productos": [producto.to_dict() for producto in productos]}
+
+        for producto in productos:
+            if producto.id_producto == id_producto:
+                return producto.to_dict(), 200
+        
+        return{"error": f"Producto con id '{id_producto}' no encontrado"}, 404
+        
     def post(self):
         nuevo = {"id": len(productos)+1, "nombre": f"Producto{len(productos)+1}"}
         productos.append(nuevo)
