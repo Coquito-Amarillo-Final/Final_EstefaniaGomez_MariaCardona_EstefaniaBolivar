@@ -31,7 +31,8 @@ En formato JSON :
   "correo": "dany.v@email.com",
   "contrasena_hash": "abc123hash",
   "numero_telefono": "3001234567"
-}```
+}
+```
 
 
 **Respuesta exitosa:** `201 CREATED` con los datos del cliente, incluyendo el `id_cliente` y la `fecha_registro`.
@@ -91,7 +92,8 @@ En  formato JSON:
   "descripcion": "Collar de Coquito",
   "categoria": "Accesorios",
   "precio_envio": 3000
-}```
+}
+```
 
 
 **Respuesta exitosa:** `201 CREATED` con los datos del producto, incluyendo el `id_producto`.
@@ -141,7 +143,8 @@ En  formato JSON:
   ],
   "total": 36000,
   "direccion_entrega": "Calle 50 #30-20, Medellín"
-}```
+}
+```
 
 
 **Respuesta exitosa:** `201 CREATED` con los datos del pedido, incluyendo el `id_producto`, la `fecha_producto` y el `estado_producto` .
