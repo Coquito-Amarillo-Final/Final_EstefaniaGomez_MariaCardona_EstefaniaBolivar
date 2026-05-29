@@ -1,4 +1,4 @@
-# API REST Coquito
+# API REST Coquito Amarillo
 Practica final Estefania Bolivar Marín, Estefania Gomez Gallego y Maria Jose Cardona Velasquez.
 ### Descripción breve:
 
