@@ -74,7 +74,7 @@ class Cliente(Resource):
             
         return {"error": f"cliente con id '{id_cliente}' no encontrado"}, 404
     
-     def delete(self, id_cliente = None):
+    def delete(self, id_cliente = None):
 
         if id_cliente is None:
              return {"error": "Se requiere el ID del cliente para eliminar"}, 400
@@ -101,8 +101,18 @@ class Producto(Resource):
 
 
 class Pedido(Resource):
-    def get(self):
-        return {"pedidos": pedidos}
+
+    def get(self, id_pedido = None):
+        
+        if id_pedido is None:
+            return {"pedidos": [pedido.to_dict() for pedido in pedidos]}
+
+        for pedido in pedidos:
+            if pedido.id_pedido == id_pedido:
+                return pedido.to_dict(), 200
+ 
+        return{"error": f"Pedido con id '{id_pedido}' no encontrado"}, 404
+
     def post(self):
         nuevo = {"id": len(pedidos)+1, "detalle": f"Pedido{len(pedidos)+1}"}
         pedidos.append(nuevo)
@@ -113,7 +123,7 @@ class Pedido(Resource):
 
 #Rutas
 api.add_resource(Cliente, "/clientes", "/clientes/<int:id_cliente>")
-api.add_resource(Producto, "/productos")
+api.add_resource(Producto, "/productos", "/productos/<int:id_producto>")
 api.add_resource(Pedido, "/pedidos")
 
 
