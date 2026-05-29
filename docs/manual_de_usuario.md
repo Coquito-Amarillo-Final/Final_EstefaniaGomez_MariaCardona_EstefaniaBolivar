@@ -37,15 +37,20 @@ En formato JSON :
 
 
 **Respuesta exitosa:** `201 CREATED` con los datos del cliente, incluyendo el `id_cliente` y la `fecha_registro`.
+
 **Respuesta fallida:** `400 BAD REQUEST` "error": "Campo requerido: '{campo}'".
 
 ### 3.2 Consultar todos los clientes - `GET /clientes`
 No requiere body.
+
 **Respuesta exitosa:** `200 OK` con la lista de todos los clientes.
 ### 3.3 Consultar a un cliente en específico - `GET /clientes/{id}`
 Reemplazar `{id}` por el `id_cliente`.
+
 **Ejemplo:** `GET /clientes/1`.
+
 **Respuesta exitosa:** `200 OK` con los datos del cliente solicitado.
+
 **Respuesta fallida:** `404 NOT FOUND` "error": "Cliente con id '{id}' no encontrado".
 ### 3.4  Modificar datos de un cliente - `PUT /clientes/{id}`
 Se debe reemplazar `{id}` por el `id_cliente`.
@@ -58,14 +63,18 @@ Se deben enviar solo los cambios que se desean cambiar, los datos que permiten s
 | `numero_telefono` | Nuevo número de teléfono |
 
 **Respuesta exitosa:** `200 OK` con todos los datos del cliente pero con los datos modificados.
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del cliente para realizar cambios".
 * `404 NOT FOUND` "error": "cliente con id {id} no encontrado".
 
 ### 3.5 Eliminar cliente - `DELETE /clientes/{id}`
 Se debe reemplazar `{id}` por el `id_cliente`.
+
 No requiere body.
+
 **Respuesta exitosa:** `200 OK`"mensaje": "El cliente con el id '{id}' fue eliminado exitosamente".
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del cliente para eliminar"
 * `404 NOT FOUND` "error": "cliente con id {id} no encontrado".
@@ -98,27 +107,37 @@ En  formato JSON:
 
 
 **Respuesta exitosa:** `201 CREATED` con los datos del producto, incluyendo el `id_producto`.
+
 **Respuesta fallida:** `400 BAD REQUEST` "error": "Campo requerido: '{campo}'".
 ### 4.2 Consultar todos los productos - `GET /productos`
 No requiere body.
+
 **Respuesta exitosa:** `200 OK` con la lista de todos los productos.
 ### 4.3 Consultar un producto en específico - `GET /productos/{id}`
 Reemplazar `{id}` por el `id_producto`.
+
 **Ejemplo:** `GET /productos/1`.
+
 **Respuesta exitosa:** `200 OK` con los datos del producto solicitado.
+
 **Respuesta fallida:** `404 NOT FOUND` "error": "Producto con id '{id}' no encontrado".
 ### 4.4  Modificar datos de un producto - `PUT /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
+
 El único dato que no puede ser modificado es el `id_producto`
 
 **Respuesta exitosa:** `200 OK` con todos los datos del producto pero con los datos modificados.
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del producto para realizar cambios".
 * `404 NOT FOUND` "error": "producto con id {id} no encontrado".
 ### 4.5 Eliminar producto - `DELETE /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
+
 No requiere body.
+
 **Respuesta exitosa:** `200 OK`"mensaje": "El producto con el id '{id}' fue eliminado exitosamente".
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del producto para eliminar".
 * `404 NOT FOUND` "error": "producto con id {id} no encontrado".
@@ -126,6 +145,7 @@ No requiere body.
 ## 5. Gestión de pedidos.
 ### 5.1 Agregar un pedido nuevo - `POST /pedidos`.
 Hay que tener en cuenta que tanto el cliente y productos asociados deben de existir.
+
 Los productos creados deben tener los siguientes datos:
 | Campo | Tipo | Requerido | Ejemplo |
 |-------|------|-----------|-------------|
@@ -156,14 +176,19 @@ En  formato JSON:
 *  `404 NOT FOUND` "error": "Producto con id '{id}' no encontrado".
 ### 5.2 Consultar todos los pedidos - `GET /pedidos`
 No requiere body.
+
 **Respuesta exitosa:** `200 OK` con la lista de todos los pedidos.
 ### 5.3 Consultar un pedido en específico - `GET /pedidos/{id}`
 Reemplazar `{id}` por el `id_pedido`.
+
 **Ejemplo:** `GET /pedidos/1`.
+
 **Respuesta exitosa:** `200 OK` con los datos del producto solicitado.
+
 **Respuesta fallida:** `404 NOT FOUND` "error": "Pedido con id '{id}' no encontrado".
 ### 5.4  Modificar datos de un pedido - `PUT /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
+
 Los datos que pueden ser modificados son:
 | Campo | Descripción |
 |-------|-------------|
@@ -186,14 +211,18 @@ Solo hay cinco estados validos:
 
 
 **Respuesta exitosa:** `200 OK` con todos los datos del producto pero con los datos modificados.
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del pedido para realizar cambios".
 * `404 NOT FOUND` "error": "pedido con id {id} no encontrado".
 * `400 BAD REQUEST` "error": "Estado inválido. Opciones: ['pendiente', 'pagado', 'en_preparacion', 'enviado', 'entregado', 'cancelado']"
 ### 5.5 Eliminar pedido - `DELETE /pedidos/{id}`
 Se debe reemplazar `{id}` por el `id_pedido`.
+
 No requiere body.
+
 **Respuesta exitosa:** `200 OK`"mensaje": "El pedido con el id '{id}' fue eliminado exitosamente".
+
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": ""error": "Se requiere el ID del pedido para eliminar"".
 * `404 NOT FOUND` "error": "pedido con id {id} no encontrado".
