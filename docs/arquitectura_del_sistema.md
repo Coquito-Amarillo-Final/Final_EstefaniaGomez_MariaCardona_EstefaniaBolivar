@@ -5,16 +5,16 @@ La arquitectura implementada en el proyecto es una arquitectura cliente-servidor
 ---
 ## Organización de archivos del sistema
 
-### 1. [app.py](api/app.py)
+### 1. [app.py](https://github.com/Coquito-Amarillo-Final/Final_EstefaniaGomez_MariaCardona_EstefaniaBolivar/blob/MainBranch/api/app.py)
 
 Este componente actúa como el controlador central. Utiliza el micro-framework Flask para gestionar las rutas de acceso, endpoints, recibir las solicitudes del cliente y procesar las operaciones de creación, consulta, actualización y eliminación de datos. Además, es el encargado de validar que la información recibida sea correcta antes de generar una respuesta oficial.
 
-### 2. [models.py](api/models.py)
+### 2. [models.py](api/https://github.com/Coquito-Amarillo-Final/Final_EstefaniaGomez_MariaCardona_EstefaniaBolivar/blob/MainBranch/api/models.py)
 
  En este archivo se define la estructura lógica de las entidades del negocio: Clientes, Productos y Pedidos. Cada modelo organiza los atributos de los objetos y contiene la lógica necesaria para transformar los datos internos del servidor a un formato JSON.
 
 
-### 3. [requirements.txt](api/requirements.txt)
+### 3. [requirements.txt](api/https://github.com/Coquito-Amarillo-Final/Final_EstefaniaGomez_MariaCardona_EstefaniaBolivar/blob/MainBranch/api/requirements.txt)
 
 Es el registro técnico que garantiza la portabilidad del proyecto. En él se listan las librerías necesarias en este caso Flask y Flask-RESTful para que el sistema pueda ser desplegado y ejecutado en cualquier entorno de desarrollo.
 
