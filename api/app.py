@@ -126,6 +126,40 @@ class Producto(Resource):
         productos.append(nuevo_producto)
         return nuevo_producto.to_dict(), 201
 
+    def put(self, id_producto = None):
+
+        if id_producto is None:
+             return {"error": "Se requiere el ID del producto para realizar cambios"}, 400
+        
+        datos = request.get_json()
+
+        for producto in productos:
+
+            if producto.id_producto == id_producto:
+                if "nombre" in datos: producto.nombre = datos["nombre"]
+                if "precio" in datos: producto.precio = datos["precio"]
+                if "stock" in datos: producto.stock = datos["stock"]
+                if "descripcion" in datos: producto.descripcion = datos["descripcion"]
+                if "categoria" in datos: producto.categoria = datos["categoria"]
+                if "precio_envio" in datos: producto.precio_envio =datos["precio_envio"] 
+      
+                return producto.to_dict(), 200
+            
+        return {"error": f"producto con id '{id_producto}' no encontrado"}, 404
+
+    def delete(self, id_producto = None):
+
+        if id_producto is None:
+             return {"error": "Se requiere el ID del producto para eliminar"}, 400
+
+        for producto in productos:
+
+            if producto.id_producto == id_producto:
+
+                productos.remove(producto)
+                return {"mensaje": f"El producto con el id '{id_producto}' fue eliminado exitosamente"}, 200
+
+        return {"error": f"producto con id '{id_producto}' no encontrado"}, 404
 
 
 class Pedido(Resource):
