@@ -31,7 +31,7 @@ class Cliente(Resource):
         
         return{"error": f"Cliente con id '{id_cliente}' no encontrado"}, 404
 
-    def post(self):
+    def post(self, id_cliente = None):
         datos = request.get_json()
 
         campos_requeridos = ["nombre", "correo", "contrasena_hash", "numero_telefono"]
@@ -102,7 +102,7 @@ class Producto(Resource):
         
         return{"error": f"Producto con id '{id_producto}' no encontrado"}, 404
         
-    def post(self):
+    def post(self, id_producto = None):
         datos = request.get_json()
 
         campos_requeridos = ["nombre", "precio", "stock", "descripcion", "categoria", "precio_envio"]
@@ -175,7 +175,7 @@ class Pedido(Resource):
  
         return{"error": f"Pedido con id '{id_pedido}' no encontrado"}, 404
 
-    def post(self):
+    def post(self, id_pedido = None):
         datos = request.get_json()
     
         campos_requeridos = ["id_cliente", "items", "total", "direccion_entrega"]
@@ -220,6 +220,33 @@ class Pedido(Resource):
 
         pedidos.append(nuevo_pedido)
         return nuevo_pedido.to_dict(), 201
+    
+    def put(self, id_pedido = None):
+
+        if id_pedido is None:
+             return {"error": "Se requiere el ID del pedido para realizar cambios"}, 400
+        
+        datos = request.get_json()
+
+        campos_permitidos = {"estado", "direccion_entrega"}
+        campos_invalidos = set(datos.keys()) - campos_permitidos
+
+        if campos_invalidos:
+            return{"error": f"Usted ingresó campos no permitidos: {list(campos_invalidos)}"}, 400
+
+        for pedido in pedidos:
+
+            if pedido.id_pedido == id_pedido:
+                
+                if "estado" in datos:
+                    if datos["estado"] not in PedidoModel.ESTADOS:
+                        return {"error": f"Estado inválido. Opciones: {PedidoModel.ESTADOS}"}, 400 
+                    
+                    pedido.estado = datos["estado"]
+                if "direccion_entrega" in datos: pedido.direccion_entrega = datos["direccion_entrega"] 
+                return pedido.to_dict(), 200
+            
+        return {"error": f"pedido con id '{id_pedido}' no encontrado"}, 404
 
 
 
@@ -227,8 +254,7 @@ class Pedido(Resource):
 #Rutas
 api.add_resource(Cliente, "/clientes", "/clientes/<int:id_cliente>")
 api.add_resource(Producto, "/productos", "/productos/<int:id_producto>")
-api.add_resource(Pedido, "/pedidos")
-
+api.add_resource(Pedido, "/pedidos", "/pedidos/<int:id_pedido>")
 
 if __name__ == "__main__":
     app.run(debug=True)
