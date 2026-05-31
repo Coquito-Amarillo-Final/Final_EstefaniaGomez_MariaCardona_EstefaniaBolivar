@@ -61,6 +61,12 @@ class Cliente(Resource):
 
         datos = request.get_json()
 
+        campos_permitidos = {"nombre", "correo", "numero_telefono"}
+        campos_invalidos = set(datos.keys()) - campos_permitidos
+
+        if campos_invalidos:
+            return{"error": f"Usted ingresó campos no permitidos: {list(campos_invalidos)}"}, 400
+
         for cliente in clientes:
 
             if cliente.id_cliente == id_cliente:
@@ -133,6 +139,12 @@ class Producto(Resource):
         
         datos = request.get_json()
 
+        campos_permitidos = {"nombre", "precio", "stock", "descripcion", "categoria", "precio_envio"}
+        campos_invalidos =  set(datos.keys()) - campos_permitidos
+
+        if campos_invalidos:
+            return{"error": f"Usted ingresó campos no permitidos: {list(campos_invalidos)}"}, 400
+
         for producto in productos:
 
             if producto.id_producto == id_producto:
@@ -151,6 +163,7 @@ class Producto(Resource):
 
         if id_producto is None:
              return {"error": "Se requiere el ID del producto para eliminar"}, 400
+        
 
         for producto in productos:
 
