@@ -94,6 +94,7 @@ Se deben enviar solo los cambios que se desean cambiar, los datos que permiten s
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del cliente para realizar cambios".
 * `404 NOT FOUND` "error": "cliente con id {id} no encontrado".
+* `400 BAD REQUEST` "error": "Usted ingresó campos no permitidos: ['campos_invalidos']".
 
 ### 6.5 Eliminar cliente - `DELETE /clientes/{id}`
 Se debe reemplazar `{id}` por el `id_cliente`.
@@ -158,6 +159,8 @@ El único dato que no puede ser modificado es el `id_producto`
 **Respuesta fallida:** 
 * `404 NOT FOUND` "error": "Se requiere el ID del producto para realizar cambios".
 * `404 NOT FOUND` "error": "producto con id {id} no encontrado".
+* `400 BAD REQUEST` "error": "Usted ingresó campos no permitidos: ['campos_invalidos']".
+  
 ### 7.5 Eliminar producto - `DELETE /productos/{id}`
 Se debe reemplazar `{id}` por el `id_producto`.
 
@@ -243,6 +246,8 @@ Solo hay cinco estados validos:
 * `404 NOT FOUND` "error": "Se requiere el ID del pedido para realizar cambios".
 * `404 NOT FOUND` "error": "pedido con id {id} no encontrado".
 * `400 BAD REQUEST` "error": "Estado inválido. Opciones: ['pendiente', 'pagado', 'en_preparacion', 'enviado', 'entregado', 'cancelado']"
+* `400 BAD REQUEST` "error": "Usted ingresó campos no permitidos: ['campos_invalidos']".
+  
 ### 8.5 Eliminar pedido - `DELETE /pedidos/{id}`
 Se debe reemplazar `{id}` por el `id_pedido`.
 
