@@ -260,6 +260,19 @@ class Pedido(Resource):
                 return pedido.to_dict(), 200
             
         return {"error": f"pedido con id '{id_pedido}' no encontrado"}, 404
+    
+    def delete(self, id_pedido = None):
+         
+        if id_pedido is None:
+             return {"error": "Se requiere el ID del pedido para eliminar"}, 400
+
+        for pedido in pedidos:
+
+            if pedido.id_pedido == id_pedido:
+                pedidos.remove(pedido)
+                return {"mensaje": f"El pedido con el id '{id_pedido}' fue eliminado exitosamente"}, 200
+
+        return {"error": f"pedido con id '{id_pedido}' no encontrado"}, 404
 
 
 
