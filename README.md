@@ -45,3 +45,7 @@ Leer documentación para obtener la información técnica del proyecto  [Ir a la
 
 Abrir la carpeta del código fuente de la API para poder probarla [Ir al código fuente](api/)
 
+### Colab:
+
+Abrir el colab con el código de la API y pruebas en Postman [Ir al colab de la practica](https://colab.research.google.com/drive/1AVACmBlickdrb6ICq02sP-hnaa7_-znN)
+
